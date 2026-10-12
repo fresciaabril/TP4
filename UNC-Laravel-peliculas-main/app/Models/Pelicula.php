@@ -17,6 +17,7 @@ class Pelicula
         $this->archivo = $archivo ?? storage_path('app/peliculas/peliculas.json');
     }
 
+
     /**
      * @return array<int, array{id: int, titulo: string, genero: string, anio: int, descripcion: string, imagen: ?string}>
      */
@@ -70,14 +71,16 @@ class Pelicula
         $this->guardarDatos($peliculas);
     }
 
-    // public function urlImagen(?string $ruta): ?string
-    // {
-    //     if ($ruta === null || $ruta === '') {
-    //         return null;
-    //     }
+    public function urlImagen(?string $ruta): ?string
+    {
+        $url = null;
 
-    //     // return Storage::disk($this->disk)->url($ruta);
-    // }
+        if ($ruta !== null && $ruta !== '') {
+            $url = asset('storage/' . $ruta);
+        }
+
+        return $url;
+    }
 
     /**
      * @return array<int, array{id: int, titulo: string, genero: string, anio: int, descripcion: string, imagen: ?string}>
